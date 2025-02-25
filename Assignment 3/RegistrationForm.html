@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration Form</title>
+        <script type="text/javascript">
+            function Submitted(event) {
+                let form = document.f1;
+                let fname = form.fname.value.trim();
+                let lname = form.lname.value.trim();
+                let email = form.email.value.trim();
+                let password = form.password.value;
+                        let cpassword = form.cpassword.value;
+            
+                        if (fname === "" || lname === "" || email === "" || password === "" || cpassword === "") {
+                            alert("All fields are required");
+                            return false;
+                        }
+                      
+                        if (password !== cpassword) {
+                            alert("Password and Confirm Password do not match");
+                            return false;
+                        }
+                        if (password.length < 8) {
+                            alert("Password must be at least 8 characters long");
+                            return false;
+                        }
+                        if (!email.includes("@") || !email.includes(".")) {
+                            alert("Email must be valid (contain '@' and '.')");
+                            return false;
+                        }
+            
+                        alert("Form Submitted Successfully");
+                    }
+            
+                    function Delete() {
+                        if (confirm("Are you sure you want to delete the form?")) {
+                            document.f1.reset();
+                            clearMessages(); 
+                        }
+                    }
+            
+                    function showMessage(field, message) {
+                        document.getElementById(field + "-msg").innerText = message;
+                    }
+            
+                    function clearMessage(field) {
+                        document.getElementById(field + "-msg").innerText = "";
+                    }
+            
+                    function clearMessages() {
+                        let form = document.f1;
+                        let fname = form.fname.value="";
+                        let lname = form.lname.value="";
+                        let email = form.email.value="";
+                        let password = form.password.value="";
+                        let cpassword = form.cpassword.value="";
+            
+                       
+                    }
+                </script>
+                <style>
+                    form{
+                        width: 50%;
+                        margin: auto;
+                        padding: 20px;
+                        border: 1px solid black;
+                        border-radius: 10px;
+                        padding-top: 10px;
+                    }
+                    table{
+                        margin: auto;
+                        border-collapse: collapse;
+                    }
+                    td{
+                        padding: 10px;
+                    }
+                    input[type="button"]{
+                        padding: 5px;
+                        margin: 5px;
+                    }
+                </style>
+            </head>
+            <body>
+                <form name="f1" action="#" method="post" onsubmit="return Submitted(event)">
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                <h1>Registration Form</h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h3>Fill the form below to register</h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>First Name:</td>
+                            <td>
+                                <input type="text" name="fname" required onfocus="showMessage('fname', 'Enter your first name')" onblur="clearMessage('fname')">
+                                <br><span id="fname-msg" class="message"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Last Name:</td>
+                            <td>
+                                <input type="text" name="lname" required onfocus="showMessage('lname', 'Enter your last name')" onblur="clearMessage('lname')">
+                                <br><span id="lname-msg" class="message"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td>
+                                <input type="email" name="email" required onfocus="showMessage('email', 'Enter a valid email address (e.g., user@example.com)')" onblur="clearMessage('email')">
+                                <br><span id="email-msg" class="message"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Password:</td>
+                            <td>
+                                <input type="password" name="password" required onfocus="showMessage('password', 'Password must be at least 8 characters')" onblur="clearMessage('password')">
+                                <br><span id="password-msg" class="message"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Confirm Password:</td>
+                            <td>
+                                <input type="password" name="cpassword" required onfocus="showMessage('cpassword', 'Confirm your password')" onblur="clearMessage('cpassword')">
+                                <br><span id="cpassword-msg" class="message"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="submit" value="Submit"/></td>
+                            <td><input type="button" value="Delete" onclick="Delete()"/></td>
+                        </tr>
+                    </table>
+                </form>
+            </body>
+            </html>
+            
